@@ -1,11 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Portal</title>
+    <title>Login HotDev Jobs</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css} "/>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/font-awesome.min.css}"/>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/styles.css}"/>
+    <meta charset="ISO-8859-1">
 </head>
-<body>
-    <h1>Welcome to Job Portal</h1>
+<body class="background">
+<nav class="main_div">
+    <div class="logo_left">
+        <label class="logo">
+            jobportal
+        </label>
+        <label class="logo_com">
+            .com
+        </label>
+    </div>
+    <div class="logo_right">
+        <label class="Candidate_login_btn">
+            Ứng viên |
+            <a th:href="@{/login}">
+                Đăng nhập
+            </a>
+            <a th:href="@{/register}">
+                / Đăng ký
+            </a>
+        </label>
+        <label class="Recruiter_login_btn">
+            Nhà tuyển dụng |
+            <a th:href="@{/login}">
+                Đăng nhập
+            </a>
+            <a th:href="@{/register}">
+                / Đăng ký
+            </a>
+
+        </label>
+    </div>
+</nav>
+<form th:action="@{/global-search/}">
+    <div class="searchBox">
+        <div class="inner">
+
+            <input type="text" placeholder="Tìm kiếm việc làm" name="job" th:value="${job}"/>
+            <input type="text" placeholder="Nhập địa điểm" name="location" th:value="${location}"/>
+            <button type="submit"><i class="fa fa-search"></i></button>
+
+        </div>
+    </div>
+</form>
+<footer>
+    <label class="copy-right">Bản quyền © 2024 jobportal.com</label>
+</footer>
 </body>
+
+<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
 </html>
