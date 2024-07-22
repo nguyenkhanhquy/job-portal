@@ -25,7 +25,7 @@ public class FileUploadUtil {
             System.out.println("FileName: " + fileName);
             Files.copy(inputStream, path, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException ioe) {
-            throw new IOException("Không thể lưu file: " + fileName, ioe);
+            throw new IOException("Could not save image file: " + fileName, ioe);
         }
     }
 }

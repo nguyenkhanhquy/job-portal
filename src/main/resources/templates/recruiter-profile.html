@@ -19,14 +19,18 @@
     </div>
     <div class=" col-7">
         <div class="myForm">
-            <form th:action="@{/recruiter-profile/addNew}" th:object="${profile}" method="post" enctype="multipart/form-data"
+            <form
+                    th:action="@{/recruiter-profile/addNew}"
+                    th:object="${profile}"
+                    method="post"
+                    enctype="multipart/form-data"
             >
                 <div class="row gutters ">
                     <div class="row mt-5">
                         <div class="col-md-12">
                             <div class="d-flex justify-content-center ">
                                 <h1 class="heading_font font-weight-bold">
-                                    Recruiter
+                                    Nhà Tuyển Dụng
                                 </h1>
                             </div>
                         </div>
@@ -34,13 +38,13 @@
                             <div class="col-md-12">
                                 <div >
                                     <h2 class="d-flex justify-content-center heading_font">
-                                        Set up your Profile
+                                        Thiết lập hồ sơ
                                     </h2>
                                 </div>
                             </div>
 
                             <div class="card-body ms-2.5">
-                                <label class="heading_font font_sub_heading_color">Name</label>
+                                <label class="heading_font font_sub_heading_color">Thông tin</label>
                                 <div class="row ">
                                     <div class="col-md-6 pr-1">
                                         <input placeholder="First Name" id="firstName" th:field="*{firstName}"  name="firstName"  type="text" class="form-control"  />
@@ -65,7 +69,7 @@
                                         <input placeholder="Company" id="company" name="company" th:field="*{company}" type="text" class="form-control"  />
                                     </div>
                                 </div>
-                                <label class="heading_font font_sub_heading_color mt-2">Profile Photo</label>
+                                <label class="heading_font font_sub_heading_color mt-2">Ảnh đại diện</label>
                                 <div class="row" >
 
                                     <div class="col" >

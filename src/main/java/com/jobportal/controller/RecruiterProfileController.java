@@ -41,7 +41,7 @@ public class RecruiterProfileController {
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
             String currentUsername = authentication.getName();
             Users user = usersRepository.findByEmail(currentUsername).orElseThrow(
-                    () -> new RuntimeException("Không tìm thấy người dùng"));
+                    () -> new RuntimeException("Could not found user"));
             Optional<RecruiterProfile> recruiterProfile = recruiterProfileService.getOne(user.getUserId());
 
             if (recruiterProfile.isPresent()) {
@@ -59,7 +59,7 @@ public class RecruiterProfileController {
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
             String currentUsername = authentication.getName();
             Users user = usersRepository.findByEmail(currentUsername).orElseThrow(
-                    () -> new RuntimeException("Không tìm thấy người dùng"));
+                    () -> new RuntimeException("Could not found user"));
             recruiterProfile.setUserId(user);
             recruiterProfile.setUserAccountId(user.getUserId());
         }

@@ -63,7 +63,7 @@ public class UsersService {
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
             String username = authentication.getName();
             Users user = usersRepository.findByEmail(username).orElseThrow(
-                    () -> new UsernameNotFoundException("Không tìm thấy người dùng"));
+                    () -> new UsernameNotFoundException("Could not found user"));
             int userId = user.getUserId();
             if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("Recruiter"))) {
                 RecruiterProfile recruiterProfile = recruiterProfileRepository.findById(userId).orElse(new RecruiterProfile());
