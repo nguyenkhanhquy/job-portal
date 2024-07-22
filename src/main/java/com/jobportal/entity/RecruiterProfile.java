@@ -34,4 +34,8 @@ public class RecruiterProfile {
     private String profilePhoto;
 
     private String state;
+
+    public RecruiterProfile(Users user) {
+        this.userId = user;
+    }
 }
