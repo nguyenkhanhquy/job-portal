@@ -20,9 +20,9 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         String username = userDetails.getUsername();
         System.out.println("The username:: " + username + " is logged in.");
         boolean hasJobSeekerRole = authentication.getAuthorities().stream()
-                .anyMatch(r -> r.getAuthority().equals("Ứng viên"));
+                .anyMatch(r -> r.getAuthority().equals("Job Seeker"));
         boolean hasRecruiterRole = authentication.getAuthorities().stream()
-                .anyMatch(r -> r.getAuthority().equals("Nhà tuyển dụng"));
+                .anyMatch(r -> r.getAuthority().equals("Recruiter"));
         if (hasJobSeekerRole || hasRecruiterRole) {
             response.sendRedirect("/dashboard/");
         }

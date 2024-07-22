@@ -44,7 +44,6 @@ public class UsersController {
             model.addAttribute("user", new Users());
             return "register";
         }
-        //System.out.println("User:: " + user);
         usersService.addNew(user);
         return "dashboard";
     }
