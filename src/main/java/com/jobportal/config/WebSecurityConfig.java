@@ -40,6 +40,7 @@ public class WebSecurityConfig {
             "/*.js.map",
             "/fonts**", "/favicon.ico", "/resources/**", "/error"};
 
+    @Bean
     protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authenticationProvider(authenticationProvider());
 
