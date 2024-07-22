@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class UsersController {
@@ -34,7 +35,15 @@ public class UsersController {
     }
 
     @PostMapping("/register/new")
-    public String userRegistration(@Valid Users user) {
+    public String userRegistration(@Valid Users user, Model model) {
+        Optional<Users> optionalUsers = usersService.getUserByEmail(user.getEmail());
+        if (optionalUsers.isPresent()) {
+            model.addAttribute("error", "Email này đã được đăng ký, hãy thử đăng ký bằng email khác.");
+            List<UsersType> usersTypes = usersTypeService.getAll();
+            model.addAttribute("getAllTypes", usersTypes);
+            model.addAttribute("user", new Users());
+            return "register";
+        }
         //System.out.println("User:: " + user);
         usersService.addNew(user);
         return "dashboard";
