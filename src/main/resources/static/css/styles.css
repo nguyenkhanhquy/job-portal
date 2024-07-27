@@ -276,6 +276,7 @@ label.large-label {
 }
 
 .form-group select.form-control {
+  margin: 4px 0;
   height: 54px !important;
 }
 

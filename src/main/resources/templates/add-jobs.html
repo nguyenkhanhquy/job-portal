@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" media="all"  th:href="@{/css/styles.css}" />
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thêm Việc Mới</title>
+    <title>Đăng Công Việc Mới</title>
 </head>
 
 <body>
@@ -31,11 +31,11 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="d-flex justify-content-center pt-3">
-                        <h1 class="heading_font font-weight-bold">Post New Job</h1>
+                        <h1 class="heading_font font-weight-bold">Đăng Công Việc Mới</h1>
                     </div>
                 </div>
             </div>
-            <label class="heading_font font_sub_heading_color">Job Details</label>
+            <label class="heading_font font_sub_heading_color">Chi tiết công việc</label>
             <div class="row" >
                 <div class="col-lg-12 form-group">
                     <input id="title" type="text" th:field="*{jobTitle}" class="form-control" placeholder="Job Title">
@@ -61,18 +61,18 @@
                     </select>
                 </div>
                 <div class="col-md-4 form-group">
-                    <input id="salary" th:field="*{salary}" type="text" class="form-control" placeholder="Salary">
+                    <input id="salary" th:field="*{salary}" type="number" class="form-control" placeholder="Salary">
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12 form-group">
-                    <label class="mt-2 heading_font font_sub_heading_color">Description</label>
+                    <label class="mt-2 heading_font font_sub_heading_color">Mô tả công việc</label>
                     <textarea type="text" rows="4" id="content" placeholder="Content" class="form-control"
                               th:field="*{descriptionOfJob}" autocomplete="off"></textarea>
                 </div>
             </div>
 
-            <label class="mt-2 heading_font font_sub_heading_color">Location</label>
+            <label class="mt-2 heading_font font_sub_heading_color">Địa điểm</label>
             <div class="row" >
                 <div class="col-md-4 form-group">
                     <input th:field="*{jobLocationId.city}" id="city" type="text"  class="form-control" placeholder="City">
@@ -86,7 +86,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-12 form-group">
-                    <label class="mt-2 heading_font font_sub_heading_color">Company</label>
+                    <label class="mt-2 heading_font font_sub_heading_color">Công ty</label>
                     <input id="companyName" th:field="*{jobCompanyId.name}" type="text" class="form-control" placeholder="Company Name">
                 </div>
             </div>

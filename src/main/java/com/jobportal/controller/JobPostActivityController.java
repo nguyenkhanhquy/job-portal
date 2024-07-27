@@ -2,6 +2,7 @@ package com.jobportal.controller;
 
 import com.jobportal.entity.JobPostActivity;
 import com.jobportal.entity.Users;
+import com.jobportal.service.JobPostActivityService;
 import com.jobportal.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -18,10 +19,13 @@ import java.util.Date;
 public class JobPostActivityController {
 
     private final UsersService usersService;
+    private final JobPostActivityService jobPostActivityService;
 
     @Autowired
-    public JobPostActivityController(UsersService usersService) {
+    public JobPostActivityController(UsersService usersService,
+                                     JobPostActivityService jobPostActivityService) {
         this.usersService = usersService;
+        this.jobPostActivityService = jobPostActivityService;
     }
 
     @GetMapping("/dashboard/")
@@ -51,6 +55,7 @@ public class JobPostActivityController {
         }
         jobPostActivity.setPostedDate(new Date());
         model.addAttribute("jobPostActivity", jobPostActivity);
+        JobPostActivity saved = jobPostActivityService.addNew(jobPostActivity);
         return "redirect:/dashboard/";
     }
 }
