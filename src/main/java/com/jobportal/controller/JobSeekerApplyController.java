@@ -93,14 +93,17 @@ public class JobSeekerApplyController {
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
             String currentUsername = authentication.getName();
             Users user = usersService.findByEmail(currentUsername);
+
             Optional<JobSeekerProfile> seekerProfile = jobSeekerProfileService.getOne(user.getUserId());
             JobPostActivity jobPostActivity = jobPostActivityService.getOne(id);
+
             if (seekerProfile.isPresent() && jobPostActivity != null) {
+                jobSeekerApply = new JobSeekerApply();
                 jobSeekerApply.setUserId(seekerProfile.get());
                 jobSeekerApply.setJob(jobPostActivity);
                 jobSeekerApply.setApplyDate(new Date());
             } else {
-                throw new RuntimeException("User not found");
+                throw new RuntimeException("User or job not found");
             }
             jobSeekerApplyService.addNew(jobSeekerApply);
         }
