@@ -234,7 +234,6 @@
                                         type="file"
                                         name="pdf"
                                         class="form-control"
-                                        required="true"
                                         accept="application/pdf"
                                 />
                                 <input type="text" name="resume" th:field="*{resume}" class="form-control" hidden/>
@@ -291,7 +290,7 @@
     $(document).on("click", "#addSkill", function (e) {
        e.preventDefault();
        counter++;
-        var newRow = jQuery("<div id='skill-repeat'><div class='row'>"+
+       var newRow = jQuery("<div id='skill-repeat'><div class='row'>"+
                    "    <div class='col-md-4 pr-1'>"+
                    "     <input"+
                    "        hidden type='text'"+
@@ -327,11 +326,10 @@
                    "    </div>"+
                    "  </div>"+
                    "</div>");
-        console.log(newRow);
+       console.log(newRow);
        $('#skill-repeat')
          .parent('div.parent')
          .append(newRow);
-
      });
 </script>
 </html>
