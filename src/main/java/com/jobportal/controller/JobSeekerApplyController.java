@@ -87,8 +87,7 @@ public class JobSeekerApplyController {
     }
 
     @PostMapping("job-details/apply/{id}")
-    public String apply(@PathVariable("id") int id,
-                        JobSeekerApply jobSeekerApply) {
+    public String apply(@PathVariable("id") int id, JobSeekerApply jobSeekerApply) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
             String currentUsername = authentication.getName();
