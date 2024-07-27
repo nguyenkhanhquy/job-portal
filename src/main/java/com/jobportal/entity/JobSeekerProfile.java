@@ -11,11 +11,10 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString
 public class JobSeekerProfile {
 
     @Id
-    private int userAccountId;
+    private Integer userAccountId;
 
     @OneToOne
     @JoinColumn(name = "user_account_id")
@@ -46,5 +45,29 @@ public class JobSeekerProfile {
 
     public JobSeekerProfile(Users user) {
         this.userId = user;
+    }
+
+    public String getPhotosImagePath() {
+        if (profilePhoto == null || userAccountId == null) {
+            return null;
+        }
+        return "/photos/candidate/" + userAccountId + "/" + profilePhoto;
+    }
+
+    @Override
+    public String toString() {
+        return "JobSeekerProfile{" +
+                "userAccountId=" + userAccountId +
+                ", userId=" + userId +
+                ", city='" + city + '\'' +
+                ", country='" + country + '\'' +
+                ", employmentType='" + employmentType + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", profilePhoto='" + profilePhoto + '\'' +
+                ", resume='" + resume + '\'' +
+                ", state='" + state + '\'' +
+                ", workAuthorization='" + workAuthorization + '\'' +
+                '}';
     }
 }

@@ -56,7 +56,7 @@ a.primary {
       rgba(0, 34, 68, 0.8),
       rgba(0, 34, 68, 0.8)
     ),
-    url('../assets/city-skyline.png');
+    url('../assets/hcmute-55.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -134,7 +134,6 @@ label > a :hover {
   font-size: 40px;
   line-height: 49px;
   padding: 12px;
-  margin-bottom: 10px;
 }
 .radius-left {
   border-radius: 10px 0 0 10px;

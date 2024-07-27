@@ -65,7 +65,7 @@ public class RecruiterProfileController {
         }
         model.addAttribute("profile", recruiterProfile);
         String fileName = "";
-        if (!multipartFile.getOriginalFilename().equals("")) {
+        if (!Objects.equals(multipartFile.getOriginalFilename(), "")) {
             fileName = StringUtils.cleanPath(Objects.requireNonNull(multipartFile.getOriginalFilename()));
             recruiterProfile.setProfilePhoto(fileName);
         }
@@ -73,9 +73,11 @@ public class RecruiterProfileController {
         String uploadDir = "photos/recruiter/" + savedUser.getUserAccountId();
 
         try {
-            FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+            if (!Objects.equals(multipartFile.getOriginalFilename(), "")) {
+                FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+            }
         } catch (Exception ex) {
-            ex.printStackTrace();
+            throw new RuntimeException("Could not save file", ex);
         }
 
         return "redirect:/dashboard/";
