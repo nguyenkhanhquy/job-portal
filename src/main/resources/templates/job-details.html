@@ -150,13 +150,15 @@
                     </div>
                     <div class="col-md-3 centerCandidate">
                         <div class="candidatesApplied">
-                            <label>Ứng viên đã nộp đơn xin việc</label>
+                            <label>Các ứng viên đã ứng tuyển</label>
                             <th:block th:each="applyList:${applyList}">
-                                <a th:href="@{/job-seeker-profile/{id}(id=${applyList.userId.userAccountId})}"
-                                   class="white"
-                                   th:text="${applyList.userId.firstName + ' ' + applyList.userId.lastName}">
-                                   FirstName LastName
-                                </a>
+                                <p>
+                                    <a th:href="@{/job-seeker-profile/{id}(id=${applyList.userId.userAccountId})}"
+                                       class="white"
+                                       th:text="${applyList.userId.firstName + ' ' + applyList.userId.lastName}">
+                                       FirstName LastName
+                                    </a>
+                                </p>
                             </th:block>
                         </div>
                     </div>
