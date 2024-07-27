@@ -8,9 +8,9 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bảng Điều Khiển</title>
-    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/styles.css}"/>
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css} "/>
-    <link th:rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}"/>
+    <link th:rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.min.css}"/>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/styles.css}"/>
 </head>
 
 <body>
@@ -74,31 +74,40 @@
                 width="50px"
                 th:if="${user.photosImagePath != null}"
                 th:src="@{${user.photosImagePath}}"
+                alt="avatar"
         />
         
         <label th:if="${user.firstName != null && user.lastName != null}"
-               th:text="${user.firstName+' '+user.lastName}"
+               th:text="${user.firstName + ' ' + user.lastName}"
                class="nav-item nav-link px-2 me-3">
         </label>
 
-        <label th:unless="${user.firstName != null && user.lastName != null}" th:text="${username}"
-               class="nav-item nav-link px-2 me-3"></label>
+        <label th:unless="${user.firstName != null && user.lastName != null}"
+               th:text="${username}"
+               class="nav-item nav-link px-2 me-3">
+        </label>
 
-        <button class="myBtn-light me-5" onclick="window.location.href='/logout'">Đăng xuất</button>
+        <button class="myBtn-light me-5" onclick="window.location.href='/logout'">
+            <i class="fa fa-sign-out-alt" aria-hidden="true"></i>
+            Đăng xuất
+        </button>
     </div>
 </header>
 
 <section class="section">
     <div class="sidenav px-5">
+        <div sec:authorize="hasAuthority('Recruiter')">
+            <hr/>
+        </div>
         <div sec:authorize="hasAuthority('Job Seeker')">
 
-            <label class="text-uppercase color-dull font-weight-bold">Filter Results</label>
+            <label class="text-uppercase color-dull font-weight-bold">Kết quả lọc</label>
             <hr/>
             <form id="myForm" th:action="@{/dashboard/}">
 
                 <div class="row">
                     <div class="col-lg-12">
-                        <label>Employment Type</label>
+                        <label>Loại việc làm</label>
                         <div class="form-check">
                             <input
                                     class="form-check-input"
@@ -185,7 +194,7 @@
 
                     </div>
                     <div class="col-lg-12">
-                        <label>Date Posted</label>
+                        <label>Ngày đăng</label>
                         <div class="form-check">
                             <input
                                     class="form-check-input"
@@ -194,7 +203,9 @@
                                     name="today"
                                     th:checked="${today}"
                             />
-                            <label class="form-check-label" for="today"> Today </label>
+                            <label class="form-check-label" for="today">
+                                Hôm Nay
+                            </label>
                         </div>
                         <div class="form-check">
                             <input
@@ -205,7 +216,7 @@
                                     th:checked="${days7}"
                             />
                             <label class="form-check-label" for="7days">
-                                Last 7 Days
+                                7 Ngày Qua
                             </label>
                         </div>
                         <div class="form-check">
@@ -217,7 +228,7 @@
                                     th:checked="${days30}"
                             />
                             <label class="form-check-label" for="30days">
-                                Last 30 Days
+                                30 Ngày Qua
                             </label>
                         </div>
                     </div>
@@ -243,7 +254,7 @@
             <h1 class="primary-title">Recruiter Dashboard</h1>
         </div>
         <div class="box mt-3">
-            <label class="large-label px-3" sec:authorize="hasAuthority('Job Seeker')">Các Kết Quả Tìm Kiếm</label>
+            <label class="large-label px-3" sec:authorize="hasAuthority('Job Seeker')">Kết Quả Tìm Kiếm</label>
             <th:block th:each="jobPost:${jobPost}">
                 <a
                         th:href="@{/job-details-apply/{id}(id=${jobPost.jobPostId})}"
@@ -267,13 +278,15 @@
                                             class="title-span"
                                             sec:authorize="hasAuthority('Job Seeker')"
                                             th:if="${jobPost.active == true}"
-                                    >(Applied)</span
+                                            style="color: green"
+                                    >(Đã ứng tuyển)</span
                                     >
                                     <span
                                             class="title-span"
                                             sec:authorize="hasAuthority('Job Seeker')"
                                             th:if="${jobPost.saved == true}"
-                                    >(Saved)</span
+                                            style="color: rgb(191, 51, 3)"
+                                    >(Đã lưu)</span
                                     >
                                 </label>
                             </div>

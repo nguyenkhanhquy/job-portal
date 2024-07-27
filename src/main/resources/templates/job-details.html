@@ -7,14 +7,13 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Candidate Dashboard</title>
-    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/styles.css}"/>
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css} "/>
-    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/font-awesome.min.css}"/>
+    <link th:rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.min.css}"/>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/styles.css}"/>
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 </head>
 
-<body th:object="${jobDetails}" style="font-family: 'Montserrat';height: 100%">
+<body th:object="${jobDetails}" style="font-family: 'Montserrat',serif;height: 100%">
 
 <header class="navbar navbar-expand-lg navbar-dark">
     <label class="mt-2 ms-5 font-weight-bold h5"
@@ -38,7 +37,7 @@
     <div class="collapse navbar-collapse" id="navbarToggler">
         <ul class="navbar-nav m-auto mt-2 mt-lg-0">
 
-            <li class="nav-item active">
+            <li class="nav-item ">
                 <a sec:authorize="hasAuthority('Job Seeker')" class="nav-link" th:href="@{/dashboard/}"
                 ><i class="fas fa-search"></i>Tìm Kiếm Công Việc</a
                 >
@@ -57,9 +56,9 @@
                 ><i class="fa-solid fa-file-circle-plus"></i>Đăng Công Việc Mới</a
                 >
             </li>
-            <li class="nav-item active">
+            <li class="nav-item ">
                 <a sec:authorize="hasAuthority('Recruiter')" class="nav-link" th:href="@{/dashboard/}"
-                > <i class="fa-solid fa-eye"></i>Xem Các Công Việc Của Bạn</a
+                > <i class="fa-solid fa-eye"></i>Xem Danh Sách Công Việc</a
                 >
             </li>
             <li class="nav-item ">
@@ -76,6 +75,7 @@
                 width="50px"
                 th:if="${user.photosImagePath != null}"
                 th:src="@{${user.photosImagePath}}"
+                alt="avatar"
         />
 
         <label th:if="${user.firstName != null && user.lastName != null}"
@@ -86,7 +86,10 @@
         <label th:unless="${user.firstName != null && user.lastName != null}" th:text="${username}"
                class="nav-item nav-link px-2 me-3"></label>
 
-        <button class="myBtn-light me-5" onclick="window.location.href='/logout'">Đăng xuất</button>
+        <button class="myBtn-light me-5" onclick="window.location.href='/logout'">
+            <i class="fa fa-sign-out-alt" aria-hidden="true"></i>
+            Đăng xuất
+        </button>
     </div>
 </header>
 
@@ -101,7 +104,7 @@
     </div>
     <article>
         <div class="box px-3">
-            <a class="mt-3 ms-3 primary" id="back-link"><i class="fa-solid fa-angle-left me-1"></i> Trở lại Danh sách Công việc </a>
+            <a class="mt-3 ms-3 primary" id="back-link"><i class="fa-solid fa-angle-left me-1"></i> Trở lại danh sách công việc </a>
             <h1 class="primary-title mt-3"> Chi Tiết Công Việc </h1>
             <div class="ms-3">
                 <h4 th:text="${jobDetails.jobTitle}" class="job-title text-left">Software Engineer</h4>
@@ -126,7 +129,7 @@
                         <label> Mức lương: <span th:text="${jobDetails.salary}">50k - 120k/y</span></label>
                     </div>
                     <div class="col-md-3 text-center">
-                        <label>Hình thức: <span th:text="${jobDetails.jobType}">Full-time</span></label>
+                        <label>Loại việc làm: <span th:text="${jobDetails.jobType}">Full-time</span></label>
                     </div>
                     <div class="col-md-3 text-right">
                         <label>Remote: <span th:text="${jobDetails.remote}">Remote</span></label>
@@ -135,14 +138,14 @@
             </div>
 
             <div class="px-3 mb-3" sec:authorize="hasAuthority('Job Seeker')">
-                <label class="large-label "> Job Description </label>
+                <label class="large-label mb-3"> Mô tả công việc </label>
                 <div th:utext="${jobDetails.descriptionOfJob}"></div>
             </div>
 
             <div class="px-3 mb-3" sec:authorize="hasAuthority('Recruiter')">
                 <div class="row">
                     <div class="col-md-9">
-                        <label class="large-label "> Mô tả công việc </label>
+                        <label class="large-label mb-3"> Mô tả công việc </label>
                         <div th:utext="${jobDetails.descriptionOfJob}"></div>
                     </div>
                     <div class="col-md-3 centerCandidate">
@@ -151,8 +154,9 @@
                             <th:block th:each="applyList:${applyList}">
                                 <a th:href="@{/job-seeker-profile/{id}(id=${applyList.userId.userAccountId})}"
                                    class="white"
-                                   th:text="${applyList.userId.firstName+', '+applyList.userId.lastName}">FirstName,
-                                    LastName</a>
+                                   th:text="${applyList.userId.firstName + ' ' + applyList.userId.lastName}">
+                                   FirstName LastName
+                                </a>
                             </th:block>
                         </div>
                     </div>
@@ -164,22 +168,22 @@
                     <div class="col-md-3">
                         <form th:action="@{/job-details/apply/{id}(id=${jobDetails.jobPostId})}" th:object="${applyJob}"
                               method="post">
-                            <button class="btn-sec btn-red w-100" type="submit" th:if="${alreadyApplied == false}">Apply
-                                Now
+                            <button class="btn-sec btn-red w-100" type="submit" th:if="${alreadyApplied == false}">
+                                Ứng tuyển ngay
                             </button>
-                            <button class="btn-sec btn-red w-100" disabled th:if="${alreadyApplied == true}">Already
-                                Applied
+                            <button class="btn-sec btn-red w-100" disabled th:if="${alreadyApplied == true}">
+                                Đã ứng tuyển
                             </button>
                         </form>
                     </div>
                     <div class="col-md-3">
                         <form th:action="@{/job-details/save/{id}(id=${jobDetails.jobPostId})}" th:object="${applyJob}"
                               method="post">
-                            <button class="btn-sec btn-black w-100" type="submit" th:if="${alreadySaved == false}">Save
-                                Job
+                            <button class="btn-sec btn-black w-100" type="submit" th:if="${alreadySaved == false}">
+                                Lưu công việc
                             </button>
-                            <button class="btn-sec btn-black w-100" disabled th:if="${alreadySaved == true}">Already
-                                Saved
+                            <button class="btn-sec btn-black w-100" disabled th:if="${alreadySaved == true}">
+                                Đã lưu
                             </button>
                         </form>
                     </div>
