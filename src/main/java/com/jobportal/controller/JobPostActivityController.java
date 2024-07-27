@@ -132,7 +132,7 @@ public class JobPostActivityController {
                     exist = false;
                     saved = false;
                     for (JobSeekerApply jobSeekerApply : jobSeekerApplyList) {
-                        if (Objects.equals(jobActivity.getPostedById(), jobSeekerApply.getJob().getJobPostId())) {
+                        if (Objects.equals(jobActivity.getJobPostId(), jobSeekerApply.getJob().getJobPostId())) {
                             jobActivity.setActive(true);
                             exist = true;
                             break;
@@ -140,7 +140,7 @@ public class JobPostActivityController {
                     }
 
                     for (JobSeekerSave jobSeekerSave : jobSeekerSaveList) {
-                        if (Objects.equals(jobActivity.getPostedById(), jobSeekerSave.getJob().getJobPostId())) {
+                        if (Objects.equals(jobActivity.getJobPostId(), jobSeekerSave.getJob().getJobPostId())) {
                             jobActivity.setSaved(true);
                             saved = true;
                             break;
@@ -151,7 +151,7 @@ public class JobPostActivityController {
                         jobActivity.setActive(false);
                     }
                     if (!saved) {
-                        jobActivity.setSaved(true);
+                        jobActivity.setSaved(false);
                     }
 
                     model.addAttribute("jobPost", jobPost);
