@@ -5,7 +5,9 @@ import lombok.*;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.text.DateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 @Entity
 @Table(name = "job_post_activity")
@@ -29,6 +31,12 @@ public class JobPostActivity {
 
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date postedDate;
+
+    public String getPostedDateDefaultFormat() {
+        DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.SHORT, new Locale("vi", "VN"));
+        String orderDateFormatted = dateFormat.format(postedDate);
+        return orderDateFormatted;
+    }
 
     private String remote;
 
