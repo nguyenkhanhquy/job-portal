@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
+<html lang="vi"
+      xmlns:th="http://www.thymeleaf.org"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Công Việc Mới</title>
     <link th:rel="stylesheet" type="text/css" media="all" th:href="@{/summernote/summernote-lite.min.css}"/>
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css} "/>
     <link rel="stylesheet" type="text/css" media="all"  th:href="@{/css/font-awesome.min.css}" />
     <link rel="stylesheet" type="text/css" media="all"  th:href="@{/css/style.css}" />
     <link rel="stylesheet" type="text/css" media="all"  th:href="@{/css/styles.css}" />
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng Công Việc Mới</title>
 </head>
 
 <body>
@@ -61,7 +62,7 @@
                     </select>
                 </div>
                 <div class="col-md-4 form-group">
-                    <input id="salary" th:field="*{salary}" type="number" class="form-control" placeholder="Salary">
+                    <input id="salary" th:field="*{salary}" type="text" class="form-control" placeholder="Salary">
                 </div>
             </div>
             <div class="row">
@@ -93,7 +94,7 @@
 
             <div class="row mt-4" >
                 <div class="col d-flex justify-content-center">
-                    <button type="submit" name="submit" class="btn btn-primary base_button px-4 py-2 mb-5">Save</button>
+                    <button type="submit" name="submit" class="btn btn-primary base_button px-4 py-2 mb-5">Lưu</button>
                 </div>
             </div>
         </form>
