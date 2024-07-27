@@ -96,7 +96,7 @@
             <h1 class="primary-title">Trang tổng quan dành cho nhà tuyển dụng</h1>
         </div>
         <div class="box mt-3">
-            <label class="large-label px-3 mb-3" sec:authorize="hasAuthority('Job Seeker')">Search Results</label>
+            <label class="large-label px-3" sec:authorize="hasAuthority('Job Seeker')">Các Kết Quả Tìm Kiếm</label>
             <th:block th:each="jobPost:${jobPost}">
                 <a
                         th:href="@{/job-details-apply/{id}(id=${jobPost.jobPostId})}"
