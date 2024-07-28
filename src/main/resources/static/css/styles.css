@@ -420,6 +420,10 @@ div.centerCandidate {
   font-weight: 700;
 }
 
+.rounded-square {
+  border-radius: 0.5rem;
+}
+
 mr-1 {
   margin-right: 0.25rem;
 }
