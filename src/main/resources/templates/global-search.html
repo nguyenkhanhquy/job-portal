@@ -16,12 +16,10 @@
 
 <body>
 <header class="navbar navbar-expand-lg navbar-dark">
-    <label class="mt-2 ms-5 font-weight-bold h5"
-    ><a th:href="@{/dashboard/}">jobportal</a
-    ><span class="logo_com font-weight-bold h5" style="color: white">
-          .com</span
-    ></label
-    >
+    <label class="mt-2 ms-5 font-weight-bold h5">
+        <a th:href="@{/dashboard/}">jobportal</a>
+        <span class="logo_com font-weight-bold h5" style="color: white">.com</span>
+    </label>
     <button
             class="navbar-toggler"
             type="button"
@@ -38,17 +36,9 @@
         <ul class="navbar-nav m-auto mt-2 mt-lg-0">
 
             <li class="nav-item active">
-                <a class="nav-link" th:href="@{/dashboard/}"
+                <a class="nav-link" th:href="@{/global-search/}"
                 ><i class="fas fa-search"></i>Tìm Kiếm Công Việc</a
                 >
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link" th:href="@{/saved-jobs/}">
-                    <i class="fa-solid fa-eye"></i>Xem Công Việc Đã Lưu</a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link" th:href="@{/job-seeker-profile/}">
-                    <i class="fa-solid fa-pencil"></i>Chỉnh Sửa Hồ Sơ</a>
             </li>
 
         </ul>
@@ -219,7 +209,7 @@
     <article>
 
         <div class="box">
-            <h1 class="primary-title">Candidate Dashboard</h1>
+            <h1 class="primary-title">Guest Dashboard</h1>
             <div class="inner">
                 <input id="job" class="radius-left" type="text" placeholder="Search for a job" name="job"
                        th:value="${job}"/>
